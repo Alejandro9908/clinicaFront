@@ -2,27 +2,30 @@
 
 This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
+## Recomendación IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) o WebStorm.
 
-## Customize configuration
+## Clonar repositorio
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+```sh
+git clone https://github.com/Alejandro9908/clinicaFront.git
+cd clinicaFront
+```
 
-## Project Setup
+## Instalar dependencias
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Levantar proyecto en modo desarrollo
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### Compilar proyecto para producción
 
 ```sh
 npm run build
