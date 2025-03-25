@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.first-letter\:uppercase::first-letter {
+    text-transform: uppercase;
+}
