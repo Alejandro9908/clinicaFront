@@ -32,6 +32,14 @@ const router = createRouter({
       component: () => import('@/modules/doctores/views/DoctoresCreate.vue'),
     },
     {
+      path: '/doctores/:id',
+      component: () => import('@/modules/doctores/views/DoctoresShow.vue')
+    },
+    {
+      path: '/doctores/edit/:id',
+      component: () => import('@/modules/doctores/views/DoctoresEdit.vue')
+    },
+    {
       path: '/pacientes',
       component: () => import('@/modules/pacientes/views/PacientesIndex.vue'),
     },
