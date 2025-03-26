@@ -28,11 +28,11 @@ const widthClass = computed(() => {
 </script>
 
 <template>
-<div :class="['px-6 py-2', widthClass]">
+<div :class="['px-6 py-4 border-b border-gray-200', widthClass]">
   <div class="flex flex-col gap-1">
     <div class="flex flex-col gap-1">
       <label for="descripcion" class="text-sm font-medium text-gray-700">{{ label }}</label>
-      <p id="descripcion" class="text-lg text-gray-900">{{ value }} </p>
+      <p id="descripcion" class="text-lg text-gray-900 first-letter:uppercase">{{ value }} </p>
     </div>
   </div>
 </div>

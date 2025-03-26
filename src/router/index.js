@@ -35,6 +35,18 @@ const router = createRouter({
       path: '/pacientes',
       component: () => import('@/modules/pacientes/views/PacientesIndex.vue'),
     },
+    {
+      path: '/pacientes/create',
+      component: () => import('@/modules/pacientes/views/PacientesCreate.vue'),
+    },
+    {
+      path: '/pacientes/:id',
+      component: () => import('@/modules/pacientes/views/PacientesShow.vue'),
+    },
+    {
+      path: '/pacientes/edit/:id',
+      component: () => import('@/modules/pacientes/views/PacientesEdit.vue'),
+    },
   ],
 })
 
