@@ -31,7 +31,7 @@ const navigation = [
   { name: 'Doctores', href: '/doctores', icon: UsersIcon},
   { name: 'Especialidades', href: '/especialidades', icon: QueueListIcon},
   { name: 'Usuarios', href: '#', icon: UserIcon},
-  { name: 'Reportes', href: '#', icon: FolderIcon},
+  //{ name: 'Reportes', href: '#', icon: FolderIcon},
 ]
 const userNavigation = [
   { name: 'Perfil', href: '#' },
@@ -84,12 +84,12 @@ const sidebarOpen = ref(false)
                         </li>
                       </ul>
                     </li>
-                    <li class="mt-auto">
+<!--                    <li class="mt-auto">
                       <a href="#" class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-400 hover:bg-gray-800 hover:text-white">
                         <Cog6ToothIcon class="size-6 shrink-0" aria-hidden="true" />
                         Configuraciones
                       </a>
-                    </li>
+                    </li>-->
                   </ul>
                 </nav>
               </div>
@@ -125,12 +125,12 @@ const sidebarOpen = ref(false)
                 </li>
               </ul>
             </li>
-            <li class="mt-auto">
+<!--            <li class="mt-auto">
               <a href="#" class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold text-gray-400 hover:bg-gray-800 hover:text-white">
                 <Cog6ToothIcon class="size-6 shrink-0" aria-hidden="true" />
                 Configuraciones
               </a>
-            </li>
+            </li>-->
           </ul>
         </nav>
       </div>
