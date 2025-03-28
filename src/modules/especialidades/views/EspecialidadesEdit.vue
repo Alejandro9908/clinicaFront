@@ -11,7 +11,9 @@ const { especialidad, fetchEspecialidad, updateEspecialidad } = useEspecialidade
 const errorFields = ref({})
 
 const actEspecialidad = ref({
+  id: "",
   descripcion: "",
+  eliminado: "",
 });
 
 onMounted(async () => {
@@ -19,8 +21,9 @@ onMounted(async () => {
   actEspecialidad.value = {
     id: especialidad.value.id,
     descripcion: especialidad.value.descripcion,
+    eliminado: especialidad.value.eliminado,
   };
-})
+});
 
 const handleUpdate = async () => {
   const result = await updateEspecialidad(route.params.id, actEspecialidad.value);

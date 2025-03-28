@@ -55,6 +55,22 @@ const router = createRouter({
       path: '/pacientes/edit/:id',
       component: () => import('@/modules/pacientes/views/PacientesEdit.vue'),
     },
+    {
+      path: '/citas',
+      component: () => import('@/modules/citas/views/CitasIndex.vue'),
+    },
+    {
+      path: '/citas/create',
+      component: () => import('@/modules/citas/views/CitasCreate.vue'),
+    },
+    {
+      path: '/citas/:id',
+      component: () => import('@/modules/citas/views/CitasShow.vue'),
+    },
+    {
+      path: '/citas/edit/:id',
+      component: () => import('@/modules/citas/views/CitasEdit.vue'),
+    },
   ],
 })
 
