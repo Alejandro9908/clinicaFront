@@ -26,7 +26,7 @@ import { ChevronDownIcon } from '@heroicons/vue/20/solid'
 const route = useRoute()
 
 const navigation = [
-  { name: 'Consultas', href: '#', icon: CalendarIcon },
+  { name: 'Consultas', href: '/citas', icon: CalendarIcon },
   { name: 'Pacientes', href: '/pacientes', icon: UserGroupIcon},
   { name: 'Doctores', href: '/doctores', icon: UsersIcon},
   { name: 'Especialidades', href: '/especialidades', icon: QueueListIcon},

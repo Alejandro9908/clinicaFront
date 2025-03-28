@@ -30,7 +30,7 @@ defineEmits(['update:modelValue'])
 </script>
 
 <template>
-  <div class="flex flex-col gap-2">
+  <div class="flex flex-col gap-2 mb-2">
     <!-- Label -->
     <label :for="id" class="block text-sm font-medium text-gray-700 mb-1">
       {{ label }} <span v-if="required" class="text-red-500">*</span>
