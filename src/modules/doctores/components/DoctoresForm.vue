@@ -15,7 +15,7 @@ const searchEspecialidad = ref('')
 
 // Buscar cuando el texto cambia
 watch(searchEspecialidad, async (newVal) => {
-  await fetchEspecialidades(newVal, 0, 5) // Opcional: limitás resultados
+  await fetchEspecialidades(newVal, 0, 5)
 })
 
 const emit = defineEmits(["save"])
@@ -77,14 +77,13 @@ const emit = defineEmits(["save"])
         :error="errorFields?.fechaNacimiento"
     />
 
-    <!-- Selector de especialidad -->
     <InputSelectSearch
-        id="especialidad"
+        id="especialidadId"
         label="Especialidad"
         v-model="doctor.especialidadId"
         :searchTerm="searchEspecialidad"
         @update:searchTerm="searchEspecialidad = $event"
-        :options="especialidades"
+        :options="especialidades.map(e => ({ id: e.id, label: e.descripcion }))"
         :required="true"
         :error="errorFields?.especialidadId"
     />
