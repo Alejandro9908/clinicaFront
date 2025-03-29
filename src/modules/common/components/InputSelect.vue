@@ -1,7 +1,7 @@
 <script setup>
 const props = defineProps({
   id: { type: String, required: true },
-  label: { type: String, required: true },
+  label: { type: String, required: false },
   required: { type: Boolean, default: false },
   error: { type: String, default: '' },
   modelValue: { type: [String, Number, Boolean], default: '' },
@@ -14,7 +14,7 @@ defineEmits(['update:modelValue'])
 <template>
   <div class="flex flex-col gap-2">
     <!-- Label -->
-    <label :for="id" class="block text-sm font-medium text-gray-700 mb-1">
+    <label v-if="label != null" :for="id" class="block text-sm font-medium text-gray-700 mb-1">
       {{ label }} <span v-if="required" class="text-red-500">*</span>
     </label>
 

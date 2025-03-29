@@ -12,10 +12,10 @@ export function useCitas() {
         totalElements: 0
     })
 
-    const fetchCitas = async (search = '', page = 0, size = 10) => {
+    const fetchCitas = async (search = '', estado="PENDIENTE", page = 0, size = 10) => {
         try {
             const response = await axios.get(
-                `${API_URL}?search=${search}&page=${page}&size=${size}`
+                `${API_URL}?search=${search}&estado=${estado}&page=${page}&size=${size}`
             )
             citas.value = response.data.data.content;
             metadata.value = {
