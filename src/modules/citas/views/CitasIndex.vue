@@ -1,11 +1,12 @@
 <script setup>
-import {ref, onMounted} from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { useCitas } from "@/modules/citas/composables/useCitas.js";
 import PageHeading from "@/modules/common/components/PageHeading.vue";
 import SearchBar from "@/modules/common/components/SearchBar.vue";
 import SimpleTable from "@/modules/common/components/SimpleTable.vue";
 import Pagination from '@/modules/common/components/Pagination.vue'
 import { PlusIcon } from '@heroicons/vue/20/solid'
+import InputSelect from "@/modules/common/components/InputSelect.vue";
 
 const { citas, fetchCitas, metadata, cancelCita } = useCitas();
 
@@ -13,9 +14,10 @@ const rows = ref([]);
 const currentPage = ref(0)
 const pageSize = ref(10)
 const search = ref('')
+const estadoSearch = ref('PENDIENTE')
 
 const searchRegistros = async () => {
-  await fetchCitas(search.value, currentPage.value, pageSize.value);
+  await fetchCitas(search.value, estadoSearch.value, currentPage.value, pageSize.value);
   rows.value = citas.value.map(item => ({
     key: item.id,
     ID: item.id,
@@ -42,6 +44,10 @@ const cancelar = async (id) => {
 onMounted(async () => {
   searchRegistros();
 });
+
+watch(estadoSearch, () => {
+  searchRegistros()
+})
 </script>
 
 <template>
@@ -60,10 +66,24 @@ onMounted(async () => {
     </div>
 
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
-      <SearchBar
-          v-model:search="search"
-          @search="searchRegistros"
-      />
+      <div class="flex justify-start gap-2">
+        <SearchBar
+            v-model:search="search"
+            @search="searchRegistros"
+        />
+        <InputSelect
+            id="estado"
+            v-model="estadoSearch"
+            :required="false"
+            :options="[
+              { id: 'TODOS', label: 'Todos' },
+              { id: 'PENDIENTE', label: 'Pendientes' },
+              { id: 'ATENDIDO', label: 'Atendidos' },
+              { id: 'CANCELADA', label: 'Canceladas' },
+            ]"
+        />
+      </div>
+
 
       <Pagination
           v-model:currentPage="currentPage"
