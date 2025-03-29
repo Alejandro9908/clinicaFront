@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const API_URL = "http://localhost:8080/api/cita-antecedentes";
 
-export function useCitas() {
+export function useAntecedentes() {
     const antecedentes = ref([]);
     const antecedente = ref(null);
     const metadata = ref({
