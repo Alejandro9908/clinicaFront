@@ -3,6 +3,7 @@ import {defineProps, defineEmits, ref, watch} from "vue";
 import InputText from "@/modules/common/components/InputText.vue";
 import InputSelectSearch from "@/modules/common/components/InputSelectSearch.vue";
 import {usePacientes} from "@/modules/pacientes/composables/usePacientes.js";
+import {useDoctores} from "@/modules/doctores/composables/useDoctores.js";
 
 const props = defineProps({
   cita: Object,
@@ -13,11 +14,18 @@ const emit = defineEmits(["save"])
 
 const { pacientes, fetchPacientes } = usePacientes();
 
+const { doctores, fetchDoctores } = useDoctores();
+
 const searchPaciente = ref('')
+const searchDoctor = ref('')
 
 // Buscar cuando el texto cambia
 watch(searchPaciente, async (newVal) => {
   await fetchPacientes(newVal, 0, 5)
+})
+
+watch(searchDoctor, async (newVal) => {
+  await fetchDoctores(newVal, 0, 5)
 })
 </script>
 
@@ -38,7 +46,7 @@ watch(searchPaciente, async (newVal) => {
         v-model="cita.pacienteId"
         :searchTerm="searchPaciente"
         @update:searchTerm="searchPaciente = $event"
-        :options="pacientes"
+        :options="pacientes.map(p => ({ id: p.id, label: p.nombre + ' ' + p.apellido }))"
         :required="true"
         :error="errorFields?.pacienteId"
     />
@@ -48,7 +56,7 @@ watch(searchPaciente, async (newVal) => {
         v-model="cita.doctorId"
         :searchTerm="searchDoctor"
         @update:searchTerm="searchDoctor = $event"
-        :options="doctores"
+        :options="doctores.map(d => ({ id: d.id, label: d.nombre + ' ' + d.apellido }))"
         :required="true"
         :error="errorFields?.doctorId"
     />

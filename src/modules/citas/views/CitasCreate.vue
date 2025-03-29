@@ -15,6 +15,7 @@ const newCita = ref({
   doctorId: 0,
   motivo: "",
   fechaAtendida: "2025-01-01T00:00:00",
+  estado: "PENDIENTE",
 });
 
 const handleSave = async () => {
