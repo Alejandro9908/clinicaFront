@@ -7,7 +7,7 @@ const props = defineProps({
     required: true,
   },
   value: {
-    type: String,
+    type: [String, Number, null],
     required: true,
   },
   size: {
@@ -25,14 +25,20 @@ const widthClass = computed(() => {
   }[props.size] || 'w-full'
 })
 
+const displayValue = computed(() => {
+  const val = props.value
+  return val !== null && val !== undefined && String(val).trim() !== '' ? val : 'N/A'
+})
+
+
 </script>
 
 <template>
 <div :class="['px-6 py-4 border-b border-gray-200', widthClass]">
   <div class="flex flex-col gap-1">
     <div class="flex flex-col gap-1">
-      <label for="descripcion" class="text-sm font-medium text-gray-700">{{ label }}</label>
-      <p id="descripcion" class="text-lg text-gray-900 first-letter:uppercase">{{ value }} </p>
+      <label for="descripcion" class="text-sm font-medium text-gray-900">{{ label }}</label>
+      <p id="descripcion" class="text-sm text-gray-700 first-letter:uppercase">{{ displayValue }} </p>
     </div>
   </div>
 </div>

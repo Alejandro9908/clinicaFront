@@ -73,12 +73,12 @@ export function useCitas() {
         }
     };
 
-    const deleteCita = async (id) => {
+    const cancelCita = async (id) => {
         try {
-            const response = await axios.delete(`${API_URL}/${id}`);
+            const response = await axios.put(`${API_URL}/cancel/${id}`);
             return response.data;
         } catch (e) {
-            alert("Error al eliminar registro: " + e);
+            alert("Error al cancelar cita: " + e);
         }
     };
 
@@ -90,6 +90,6 @@ export function useCitas() {
         fetchCita,
         createCita,
         updateCita,
-        deleteCita,
+        cancelCita,
     }
 }

@@ -7,7 +7,7 @@ import SimpleTable from "@/modules/common/components/SimpleTable.vue";
 import Pagination from '@/modules/common/components/Pagination.vue'
 import { PlusIcon } from '@heroicons/vue/20/solid'
 
-const { citas, fetchCitas, metadata, deleteCita } = useCitas();
+const { citas, fetchCitas, metadata, cancelCita } = useCitas();
 
 const rows = ref([]);
 const currentPage = ref(0)
@@ -26,13 +26,13 @@ const searchRegistros = async () => {
   }));
 }
 
-const eliminar = async (id) => {
-  const confirmacion = confirm('¿Estás seguro que deseas eliminar esta cita?')
+const cancelar = async (id) => {
+  const confirmacion = confirm('¿Estás seguro que deseas cancelar la cita?')
   if (!confirmacion) return
 
   try {
-    await deleteCita(id) // espera que se elimine en el backend
-    await searchRegistros()      // luego actualiza la tabla
+    await cancelCita(id)
+    await searchRegistros()
   } catch (e) {
     alert('Error al eliminar el registro')
     console.error(e)
@@ -82,14 +82,16 @@ onMounted(async () => {
             Ver
           </RouterLink>
           <RouterLink
+              v-if="row.Estado === 'PENDIENTE'"
               :to="{ path: '/citas/edit/' + row.key }"
               class="inline-flex items-center gap-2 px-3 py-1 text-sm font-medium text-white bg-emerald-500 hover:bg-emerald-600 rounded-md shadow-sm cursor-pointer"
           >
             Atender
           </RouterLink>
           <button
+              v-if="row.Estado === 'PENDIENTE'"
               class="inline-flex items-center gap-2 px-3 py-1 text-sm font-medium text-white bg-red-500 hover:bg-red-600 rounded-md shadow-sm cursor-pointer"
-              @click="eliminar(row.key)"
+              @click="cancelar(row.key)"
           >
             Cancelar
           </button>
