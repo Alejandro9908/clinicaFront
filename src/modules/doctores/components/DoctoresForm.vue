@@ -1,5 +1,5 @@
 <script setup>
-import {defineProps, defineEmits, ref, watch} from 'vue';
+import {defineProps, defineEmits, ref, watch, onMounted} from 'vue';
 import InputSelectSearch from '@/modules/common/components/InputSelectSearch.vue';
 import { useEspecialidades } from '@/modules/especialidades/composables/useEspecialidades.js';
 import InputText from "@/modules/common/components/InputText.vue";
@@ -9,7 +9,7 @@ const props = defineProps({
   errorFields: Object
 });
 
-const { especialidades, fetchEspecialidades } = useEspecialidades();
+const { especialidades, fetchEspecialidades, fetchEspecialidad, especialidad } = useEspecialidades();
 
 const searchEspecialidad = ref('')
 
@@ -17,6 +17,18 @@ const searchEspecialidad = ref('')
 watch(searchEspecialidad, async (newVal) => {
   await fetchEspecialidades(newVal, 0, 5)
 })
+
+// Este bloque carga la descripción cuando hay especialidadId (modo edición)
+watch(
+    () => props.doctor.especialidadId,
+    async (newVal) => {
+      if (newVal) {
+        await fetchEspecialidad(newVal)
+        searchEspecialidad.value = especialidad.value?.descripcion || ''
+      }
+    },
+    { immediate: true }
+);
 
 const emit = defineEmits(["save"])
 </script>
